@@ -23,14 +23,14 @@ export default extension("purchase.checkout.block.render", (root, api) => {
     // Crear o actualizar el metafield
     if (existingMetafield) {
       api.metafields.update({
-        namespace: "philco", // Reemplaza con tu propio namespace
+        namespace: "philco", 
         key: key,
         value: value,
         type: 'string'
       });
     } else {
       api.metafields.create({
-        namespace: "philco", // Reemplaza con tu propio namespace
+        namespace: "philco", 
         key: key,
         value: value,
         type: 'string'

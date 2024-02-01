@@ -1,1 +1,888 @@
-(()=>{var ie=Object.defineProperty;var X=Object.getOwnPropertySymbols;var se=Object.prototype.hasOwnProperty,ce=Object.prototype.propertyIsEnumerable;var q=(e,t,n)=>t in e?ie(e,t,{enumerable:!0,configurable:!0,writable:!0,value:n}):e[t]=n,T=(e,t)=>{for(var n in t||(t={}))se.call(t,n)&&q(e,n,t[n]);if(X)for(var n of X(t))ce.call(t,n)&&q(e,n,t[n]);return e};var J=(e,t,n)=>new Promise((o,r)=>{var i=p=>{try{c(n.next(p))}catch(a){r(a)}},f=p=>{try{c(n.throw(p))}catch(a){r(a)}},c=p=>p.done?o(p.value):Promise.resolve(p.value).then(i,f);c((n=n.apply(e,t)).next())});function k(e){if(e==null||typeof e!="object")return!1;let t=Object.getPrototypeOf(e);return t==null||t===Object.prototype}function R(e){return e!=null&&e.kind===3}var P="__current",B={},fe=[];function K(e,{strict:t=!0,components:n}={}){let o=0,r={strict:t,mounted:!1,channel:e,children:fe,nodes:new WeakSet,parents:new WeakMap,tops:new WeakMap,components:new WeakMap,fragments:new WeakMap};t&&Object.freeze(n);let i={kind:0,options:t?Object.freeze({strict:t,components:n}):{strict:t,components:n},get children(){return r.children},createComponent(f,...c){if(n&&n.indexOf(f)<0)throw new Error(`Unsupported component: ${f}`);let[p,a,...s]=c,d=p!=null?p:{},m=[],g={};if(p)for(let u of Object.keys(p))u!=="children"&&(g[u]=y(re(p[u])));if(a)if(Array.isArray(a))for(let u of a)m.push(C(u,i));else{m.push(C(a,i));for(let u of s)m.push(C(u,i))}let l=`${o++}`,h={externalProps:t?Object.freeze(d):d,internalProps:g,children:t?Object.freeze(m):m},x=T({kind:1,get children(){return h.children},get props(){return h.externalProps},get remoteProps(){return h.internalProps},remove:()=>Z(x),updateProps:u=>me(x,u,h,r),append:(...u)=>I(x,u.map(b=>C(b,i)),h,r),appendChild:u=>F(x,C(u,i),h,r),removeChild:u=>j(x,u,h,r),replaceChildren:(...u)=>z(x,u.map(b=>C(b,i)),h,r),insertBefore:(u,b)=>E(x,C(u,i),b,h,r),insertChildBefore:(u,b)=>E(x,C(u,i),b,h,r)},B);r.components.set(x,h),Object.defineProperty(x,"type",{value:f,configurable:!1,writable:!1,enumerable:!0}),L(x,r),H(x,l,i);for(let u of h.children)S(x,u,r);return x},createText(f=""){let c=`${o++}`,p={text:f},a=d=>le(s,d,p,r),s=T({kind:2,get text(){return p.text},update:a,updateText:a,remove:()=>Z(s)},B);return L(s,r),H(s,c,i),s},createFragment(){let f=`${o++}`,c={children:t?Object.freeze([]):[]},p=T({kind:3,get children(){return c.children},append:(...a)=>I(p,a.map(s=>C(s,i)),c,r),appendChild:a=>F(p,C(a,i),c,r),removeChild:a=>j(p,a,c,r),replaceChildren:(...a)=>z(p,a.map(s=>C(s,i)),c,r),insertBefore:(a,s)=>E(p,C(a,i),s,c,r),insertChildBefore:(a,s)=>E(p,C(a,i),s,c,r)},B);return r.fragments.set(p,c),L(p,r),H(p,f,i),p},append:(...f)=>I(i,f.map(c=>C(c,i)),r,r),appendChild:f=>F(i,C(f,i),r,r),replaceChildren:(...f)=>z(i,f.map(c=>C(c,i)),r,r),removeChild:f=>j(i,f,r,r),insertBefore:(f,c)=>E(i,C(f,i),c,r,r),insertChildBefore:(f,c)=>E(i,C(f,i),c,r,r),mount(){return r.mounted?Promise.resolve():(r.mounted=!0,Promise.resolve(e(0,r.children.map(A))))}};return i}function de(e,{tops:t}){var n;return((n=t.get(e))===null||n===void 0?void 0:n.kind)===0}function te(e,t){let n=o=>{if("children"in o)for(let r of o.children)t(r),n(r)};n(e)}function N(e,t,{remote:n,local:o}){let{mounted:r,channel:i}=t;r&&(e.kind===0||de(e,t))&&n(i),o()}function le(e,t,n,o){return N(e,o,{remote:r=>r(3,e.id,t),local:()=>{n.text=t}})}var O=Symbol("ignore");function me(e,t,n,o){let{strict:r}=o,{internalProps:i,externalProps:f}=n,c={},p=[],a=!1;for(let s of Object.keys(t)){if(s==="children")continue;let d=f[s],m=t[s],g=i[s],l=re(m);if(g===l&&(l==null||typeof l!="object"))continue;let[h,x]=W(g,l);x&&p.push(...x),h!==O&&(a=!0,c[s]=h,R(d)&&G(d,o),R(m)&&S(e,m,o))}return N(e,o,{remote:s=>{a&&s(4,e.id,c)},local:()=>{let s=T(T({},f),t);n.externalProps=r?Object.freeze(s):s,n.internalProps=T(T({},n.internalProps),c);for(let[d,m]of p)d[P]=m}})}function W(e,t,n=new Set){return n.has(e)?[O]:(n.add(e),typeof e=="function"&&P in e?[typeof t=="function"?O:y(t),[[e,t]]]:Array.isArray(e)?xe(e,t,n):k(e)&&!R(e)?he(e,t,n):[e===t?O:t])}function y(e,t=new Map){let n=t.get(e);if(n)return n;if(R(e))return t.set(e,e),e;if(Array.isArray(e)){let o=[];t.set(e,o);for(let r of e)o.push(y(r,t));return o}if(k(e)){let o={};t.set(e,o);for(let r of Object.keys(e))o[r]=y(e[r],t);return o}if(typeof e=="function"){let o=(...r)=>o[P](...r);return Object.defineProperty(o,P,{enumerable:!1,configurable:!1,writable:!0,value:e}),t.set(e,o),o}return t.set(e,e),e}function _(e,t=new Set){if(!t.has(e)){if(t.add(e),Array.isArray(e))return e.reduce((n,o)=>{let r=_(o,t);return r?[...n,...r]:n},[]);if(k(e))return Object.keys(e).reduce((n,o)=>{let r=_(e[o],t);return r?[...n,...r]:n},[]);if(typeof e=="function")return P in e?[e]:void 0}}function Z(e){var t;(t=e.parent)===null||t===void 0||t.removeChild(e)}function I(e,t,n,o){for(let r of t)F(e,r,n,o)}function F(e,t,n,o){var r;let{nodes:i,strict:f}=o;if(!i.has(t))throw new Error("Cannot append a node that was not created by this remote root");let c=t.parent,p=(r=c==null?void 0:c.children.indexOf(t))!==null&&r!==void 0?r:-1;return N(e,o,{remote:a=>{a(1,e.id,p<0?e.children.length:e.children.length-1,A(t),c?c.id:!1)},local:()=>{S(e,t,o);let a;if(c){let s=ne(c,o),d=[...s.children];d.splice(p,1),c===e?a=d:(s.children=f?Object.freeze(d):d,a=[...n.children])}else a=[...n.children];a.push(t),n.children=f?Object.freeze(a):a}})}function z(e,t,n,o){for(let r of e.children)j(e,r,n,o);I(e,t,n,o)}function j(e,t,n,o){let{strict:r}=o;return N(e,o,{remote:i=>i(2,e.id,e.children.indexOf(t)),local:()=>{G(t,o);let i=[...n.children];i.splice(i.indexOf(t),1),n.children=r?Object.freeze(i):i}})}function E(e,t,n,o,r){var i;let{strict:f,nodes:c}=r;if(!c.has(t))throw new Error("Cannot insert a node that was not created by this remote root");let p=t.parent,a=(i=p==null?void 0:p.children.indexOf(t))!==null&&i!==void 0?i:-1;return N(e,r,{remote:s=>{let d=n==null?e.children.length-1:e.children.indexOf(n);s(1,e.id,d<a||a<0?d:d-1,A(t),p?p.id:!1)},local:()=>{S(e,t,r);let s;if(p){let d=ne(p,r),m=[...d.children];m.splice(a,1),p===e?s=m:(d.children=f?Object.freeze(m):m,s=[...o.children])}else s=[...o.children];n==null?s.push(t):s.splice(s.indexOf(n),0,t),o.children=f?Object.freeze(s):s}})}function C(e,t){return typeof e=="string"?t.createText(e):e}function S(e,t,n){let{tops:o,parents:r}=n,i=e.kind===0?e:o.get(e);o.set(t,i),r.set(t,e),v(t,n),te(t,f=>{o.set(f,i),v(f,n)})}function v(e,t){if(e.kind!==1)return;let n=e.props;n&&Object.values(n).forEach(o=>{R(o)&&S(e,o,t)})}function G(e,t){let{tops:n,parents:o}=t;n.delete(e),o.delete(e),te(e,r=>{n.delete(r),V(r,t)}),V(e,t)}function V(e,t){if(e.kind!==1)return;let n=e.remoteProps;for(let o of Object.keys(n!=null?n:{})){let r=n[o];R(r)&&G(r,t)}}function L(e,{parents:t,tops:n,nodes:o}){o.add(e),Object.defineProperty(e,"parent",{get(){return t.get(e)},configurable:!0,enumerable:!0}),Object.defineProperty(e,"top",{get(){return n.get(e)},configurable:!0,enumerable:!0})}function A(e){return e.kind===2?{id:e.id,kind:e.kind,text:e.text}:{id:e.id,kind:e.kind,type:e.type,props:e.remoteProps,children:e.children.map(t=>A(t))}}function re(e){return R(e)?ue(e):e}function ue(e){return{id:e.id,kind:e.kind,get children(){return e.children.map(t=>A(t))}}}function ne(e,t){return e.kind===0?t:e.kind===3?t.fragments.get(e):t.components.get(e)}function H(e,t,n){Object.defineProperty(e,"id",{value:t,configurable:!0,writable:!1,enumerable:!1}),Object.defineProperty(e,"root",{value:n,configurable:!0,writable:!1,enumerable:!1})}function he(e,t,n){if(!k(t)){var o;return[y(t),(o=_(e))===null||o===void 0?void 0:o.map(c=>[c,void 0])]}let r=!1,i=[],f={};for(let c in e){let p=e[c];if(!(c in t)){r=!0;let m=_(p);m&&i.push(...m.map(g=>[g,void 0]))}let a=t[c],[s,d]=W(p,a,n);d&&i.push(...d),s!==O&&(r=!0,f[c]=s)}for(let c in t)c in f||(r=!0,f[c]=y(t[c]));return[r?f:O,i]}function xe(e,t,n){if(!Array.isArray(t)){var o;return[y(t),(o=_(e))===null||o===void 0?void 0:o.map(s=>[s,void 0])]}let r=!1,i=[],f=t.length,c=e.length,p=Math.max(c,f),a=[];for(let s=0;s<p;s++){let d=e[s],m=t[s];if(s<f){if(s>=c){r=!0,a[s]=y(m);continue}let[g,l]=W(d,m,n);if(l&&i.push(...l),g===O){a[s]=d;continue}r=!0,a[s]=g}else{r=!0;let g=_(d);g&&i.push(...g.map(l=>[l,void 0]))}}return[r?a:O,i]}function oe(){return(t,n)=>{var o;function r(...i){return J(this,null,function*(){if(i.length===1)return n(...i);let[{channel:f,components:c},p]=i,a=K(f,{components:c,strict:!0}),s=n(a,p);return typeof s=="object"&&s!=null&&"then"in s&&(s=yield s),a.mount(),s})}return(o=globalThis.shopify)===null||o===void 0||o.extend(t,r),r}}var U=oe();var $="Banner";var Y="Checkbox";var w="Select";var M="TextField";var Ve=U("purchase.checkout.block.render",(e,t)=>{let{extension:n,i18n:o}=t,r={RFC:"",Codigo_postal:"",Nombre_Razon_Social:"",Regimen_Fiscal:"1",Tipo_Persona:"1"},i=(l,h)=>{t.metafields.current.find(b=>b.key===l)?t.metafields.update({namespace:"philco",key:l,value:h,type:"string"}):t.metafields.create({namespace:"philco",key:l,value:h,type:"string"})},f=!1,c=e.createComponent($,{title:"checkout-ui"},o.translate("welcome",{target:n.target}));e.appendChild(c);let p=e.createComponent(Y,{id:"checkbox",name:"checkbox",onChange:()=>{f=!f,f?(e.appendChild(d),e.appendChild(a),e.appendChild(s),e.appendChild(m),e.appendChild(g)):(e.removeChild(d),e.removeChild(a),e.removeChild(s),e.removeChild(m),e.removeChild(g))}},"Deseas facturar?");e.appendChild(p);let a=e.createComponent(M,{id:"RFC",label:"RFC",onChange:l=>{r.RFC=l,i("RFC",l)}}),s=e.createComponent(M,{id:"Codigo_postal",label:"Codigo postal",onChange:l=>{r.Codigo_postal=l,i("Codigo_postal",l)}}),d=e.createComponent(M,{id:"Nombre_Razon_Social",label:"Nombre o raz\xF3n social",onChange:l=>{r.Nombre_Razon_Social=l,i("Nombre_Razon_Social",l)}}),m=e.createComponent(w,{label:"Regimen fiscal",value:r.Regimen_Fiscal,options:[{value:"601",label:"601 General de Ley Personas Morales"},{value:"603",label:"603 Personas Morales con Fines no Lucrativos"},{value:"605",label:"605 Sueldos y Salarios e Ingresos Asimilados a Salarios"},{value:"606",label:"606 Arrendamiento"},{value:"607",label:"607 R\xE9gimen de Enajenaci\xF3n o Adquisici\xF3n de Bienes"},{value:"608",label:"608 Dem\xE1s ingresos"}],onChange:l=>{r.Regimen_Fiscal=l,i("Regimen_Fiscal",l)}}),g=e.createComponent(w,{label:"Tipo de Persona",value:r.Tipo_Persona,options:[{value:"fisica",label:"Soy persona fisica"},{value:"moral",label:"Soy persona moral"}],onChange:l=>{r.Tipo_Persona=l,i("Tipo_Persona",l)}});f&&(e.appendChild(d),e.appendChild(a),e.appendChild(s),e.appendChild(m),e.appendChild(g))});})();
+(() => {
+  var __defProp = Object.defineProperty;
+  var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+  var __hasOwnProp = Object.prototype.hasOwnProperty;
+  var __propIsEnum = Object.prototype.propertyIsEnumerable;
+  var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+  var __spreadValues = (a, b) => {
+    for (var prop in b || (b = {}))
+      if (__hasOwnProp.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    if (__getOwnPropSymbols)
+      for (var prop of __getOwnPropSymbols(b)) {
+        if (__propIsEnum.call(b, prop))
+          __defNormalProp(a, prop, b[prop]);
+      }
+    return a;
+  };
+  var __async = (__this, __arguments, generator) => {
+    return new Promise((resolve, reject) => {
+      var fulfilled = (value) => {
+        try {
+          step(generator.next(value));
+        } catch (e) {
+          reject(e);
+        }
+      };
+      var rejected = (value) => {
+        try {
+          step(generator.throw(value));
+        } catch (e) {
+          reject(e);
+        }
+      };
+      var step = (x) => x.done ? resolve(x.value) : Promise.resolve(x.value).then(fulfilled, rejected);
+      step((generator = generator.apply(__this, __arguments)).next());
+    });
+  };
+
+  // node_modules/@remote-ui/rpc/build/esm/memory.mjs
+  function isBasicObject(value) {
+    if (value == null || typeof value !== "object")
+      return false;
+    const prototype = Object.getPrototypeOf(value);
+    return prototype == null || prototype === Object.prototype;
+  }
+
+  // node_modules/@remote-ui/core/build/esm/component.mjs
+  function createRemoteComponent(componentType) {
+    return componentType;
+  }
+
+  // node_modules/@remote-ui/core/build/esm/types.mjs
+  var ACTION_MOUNT = 0;
+  var ACTION_INSERT_CHILD = 1;
+  var ACTION_REMOVE_CHILD = 2;
+  var ACTION_UPDATE_TEXT = 3;
+  var ACTION_UPDATE_PROPS = 4;
+  var KIND_ROOT = 0;
+  var KIND_COMPONENT = 1;
+  var KIND_TEXT = 2;
+  var KIND_FRAGMENT = 3;
+
+  // node_modules/@remote-ui/core/build/esm/utilities.mjs
+  function isRemoteFragment(object) {
+    return object != null && object.kind === KIND_FRAGMENT;
+  }
+
+  // node_modules/@remote-ui/core/build/esm/root.mjs
+  var FUNCTION_CURRENT_IMPLEMENTATION_KEY = "__current";
+  var EMPTY_OBJECT = {};
+  var EMPTY_ARRAY = [];
+  function createRemoteRoot(channel, {
+    strict = true,
+    components
+  } = {}) {
+    let currentId = 0;
+    const rootInternals = {
+      strict,
+      mounted: false,
+      channel,
+      children: EMPTY_ARRAY,
+      nodes: /* @__PURE__ */ new WeakSet(),
+      parents: /* @__PURE__ */ new WeakMap(),
+      tops: /* @__PURE__ */ new WeakMap(),
+      components: /* @__PURE__ */ new WeakMap(),
+      fragments: /* @__PURE__ */ new WeakMap()
+    };
+    if (strict)
+      Object.freeze(components);
+    const remoteRoot = {
+      kind: KIND_ROOT,
+      options: strict ? Object.freeze({
+        strict,
+        components
+      }) : {
+        strict,
+        components
+      },
+      get children() {
+        return rootInternals.children;
+      },
+      createComponent(type, ...rest) {
+        if (components && components.indexOf(type) < 0) {
+          throw new Error(`Unsupported component: ${type}`);
+        }
+        const [initialProps, initialChildren, ...moreChildren] = rest;
+        const normalizedInitialProps = initialProps !== null && initialProps !== void 0 ? initialProps : {};
+        const normalizedInitialChildren = [];
+        const normalizedInternalProps = {};
+        if (initialProps) {
+          for (const key of Object.keys(initialProps)) {
+            if (key === "children")
+              continue;
+            normalizedInternalProps[key] = makeValueHotSwappable(serializeProp(initialProps[key]));
+          }
+        }
+        if (initialChildren) {
+          if (Array.isArray(initialChildren)) {
+            for (const child of initialChildren) {
+              normalizedInitialChildren.push(normalizeChild(child, remoteRoot));
+            }
+          } else {
+            normalizedInitialChildren.push(normalizeChild(initialChildren, remoteRoot));
+            for (const child of moreChildren) {
+              normalizedInitialChildren.push(normalizeChild(child, remoteRoot));
+            }
+          }
+        }
+        const id = `${currentId++}`;
+        const internals = {
+          externalProps: strict ? Object.freeze(normalizedInitialProps) : normalizedInitialProps,
+          internalProps: normalizedInternalProps,
+          children: strict ? Object.freeze(normalizedInitialChildren) : normalizedInitialChildren
+        };
+        const component = __spreadValues({
+          kind: KIND_COMPONENT,
+          get children() {
+            return internals.children;
+          },
+          get props() {
+            return internals.externalProps;
+          },
+          get remoteProps() {
+            return internals.internalProps;
+          },
+          remove: () => remove(component),
+          updateProps: (newProps) => updateProps(component, newProps, internals, rootInternals),
+          append: (...children) => append(component, children.map((child) => normalizeChild(child, remoteRoot)), internals, rootInternals),
+          appendChild: (child) => appendChild(component, normalizeChild(child, remoteRoot), internals, rootInternals),
+          removeChild: (child) => removeChild(component, child, internals, rootInternals),
+          replaceChildren: (...children) => replaceChildren(component, children.map((child) => normalizeChild(child, remoteRoot)), internals, rootInternals),
+          insertBefore: (child, before) => insertBefore(component, normalizeChild(child, remoteRoot), before, internals, rootInternals),
+          insertChildBefore: (child, before) => insertBefore(component, normalizeChild(child, remoteRoot), before, internals, rootInternals)
+        }, EMPTY_OBJECT);
+        rootInternals.components.set(component, internals);
+        Object.defineProperty(component, "type", {
+          value: type,
+          configurable: false,
+          writable: false,
+          enumerable: true
+        });
+        makePartOfTree(component, rootInternals);
+        makeRemote(component, id, remoteRoot);
+        for (const child of internals.children) {
+          moveNodeToContainer(component, child, rootInternals);
+        }
+        return component;
+      },
+      createText(content = "") {
+        const id = `${currentId++}`;
+        const internals = {
+          text: content
+        };
+        const update = (newText) => updateText(text, newText, internals, rootInternals);
+        const text = __spreadValues({
+          kind: KIND_TEXT,
+          get text() {
+            return internals.text;
+          },
+          update,
+          updateText: update,
+          remove: () => remove(text)
+        }, EMPTY_OBJECT);
+        makePartOfTree(text, rootInternals);
+        makeRemote(text, id, remoteRoot);
+        return text;
+      },
+      createFragment() {
+        const id = `${currentId++}`;
+        const internals = {
+          children: strict ? Object.freeze([]) : []
+        };
+        const fragment = __spreadValues({
+          kind: KIND_FRAGMENT,
+          get children() {
+            return internals.children;
+          },
+          append: (...children) => append(fragment, children.map((child) => normalizeChild(child, remoteRoot)), internals, rootInternals),
+          appendChild: (child) => appendChild(fragment, normalizeChild(child, remoteRoot), internals, rootInternals),
+          removeChild: (child) => removeChild(fragment, child, internals, rootInternals),
+          replaceChildren: (...children) => replaceChildren(fragment, children.map((child) => normalizeChild(child, remoteRoot)), internals, rootInternals),
+          insertBefore: (child, before) => insertBefore(fragment, normalizeChild(child, remoteRoot), before, internals, rootInternals),
+          insertChildBefore: (child, before) => insertBefore(fragment, normalizeChild(child, remoteRoot), before, internals, rootInternals)
+        }, EMPTY_OBJECT);
+        rootInternals.fragments.set(fragment, internals);
+        makePartOfTree(fragment, rootInternals);
+        makeRemote(fragment, id, remoteRoot);
+        return fragment;
+      },
+      append: (...children) => append(remoteRoot, children.map((child) => normalizeChild(child, remoteRoot)), rootInternals, rootInternals),
+      appendChild: (child) => appendChild(remoteRoot, normalizeChild(child, remoteRoot), rootInternals, rootInternals),
+      replaceChildren: (...children) => replaceChildren(remoteRoot, children.map((child) => normalizeChild(child, remoteRoot)), rootInternals, rootInternals),
+      removeChild: (child) => removeChild(remoteRoot, child, rootInternals, rootInternals),
+      insertBefore: (child, before) => insertBefore(remoteRoot, normalizeChild(child, remoteRoot), before, rootInternals, rootInternals),
+      insertChildBefore: (child, before) => insertBefore(remoteRoot, normalizeChild(child, remoteRoot), before, rootInternals, rootInternals),
+      mount() {
+        if (rootInternals.mounted)
+          return Promise.resolve();
+        rootInternals.mounted = true;
+        return Promise.resolve(channel(ACTION_MOUNT, rootInternals.children.map(serializeChild)));
+      }
+    };
+    return remoteRoot;
+  }
+  function connected(element, {
+    tops
+  }) {
+    var _tops$get;
+    return ((_tops$get = tops.get(element)) === null || _tops$get === void 0 ? void 0 : _tops$get.kind) === KIND_ROOT;
+  }
+  function allDescendants(element, withEach) {
+    const recurse = (element2) => {
+      if ("children" in element2) {
+        for (const child of element2.children) {
+          withEach(child);
+          recurse(child);
+        }
+      }
+    };
+    recurse(element);
+  }
+  function perform(element, rootInternals, {
+    remote,
+    local
+  }) {
+    const {
+      mounted,
+      channel
+    } = rootInternals;
+    if (mounted && (element.kind === KIND_ROOT || connected(element, rootInternals))) {
+      remote(channel);
+    }
+    local();
+  }
+  function updateText(text, newText, internals, rootInternals) {
+    return perform(text, rootInternals, {
+      remote: (channel) => channel(ACTION_UPDATE_TEXT, text.id, newText),
+      local: () => {
+        internals.text = newText;
+      }
+    });
+  }
+  var IGNORE = Symbol("ignore");
+  function updateProps(component, newProps, internals, rootInternals) {
+    const {
+      strict
+    } = rootInternals;
+    const {
+      internalProps: currentProps,
+      externalProps: currentExternalProps
+    } = internals;
+    const normalizedNewProps = {};
+    const hotSwapFunctions = [];
+    let hasRemoteChange = false;
+    for (const key of Object.keys(newProps)) {
+      if (key === "children")
+        continue;
+      const currentExternalValue = currentExternalProps[key];
+      const newExternalValue = newProps[key];
+      const currentValue = currentProps[key];
+      const newValue = serializeProp(newExternalValue);
+      if (currentValue === newValue && (newValue == null || typeof newValue !== "object")) {
+        continue;
+      }
+      const [value, hotSwaps] = tryHotSwappingValues(currentValue, newValue);
+      if (hotSwaps) {
+        hotSwapFunctions.push(...hotSwaps);
+      }
+      if (value === IGNORE)
+        continue;
+      hasRemoteChange = true;
+      normalizedNewProps[key] = value;
+      if (isRemoteFragment(currentExternalValue)) {
+        removeNodeFromContainer(currentExternalValue, rootInternals);
+      }
+      if (isRemoteFragment(newExternalValue)) {
+        moveNodeToContainer(component, newExternalValue, rootInternals);
+      }
+    }
+    return perform(component, rootInternals, {
+      remote: (channel) => {
+        if (hasRemoteChange) {
+          channel(ACTION_UPDATE_PROPS, component.id, normalizedNewProps);
+        }
+      },
+      local: () => {
+        const mergedExternalProps = __spreadValues(__spreadValues({}, currentExternalProps), newProps);
+        internals.externalProps = strict ? Object.freeze(mergedExternalProps) : mergedExternalProps;
+        internals.internalProps = __spreadValues(__spreadValues({}, internals.internalProps), normalizedNewProps);
+        for (const [hotSwappable, newValue] of hotSwapFunctions) {
+          hotSwappable[FUNCTION_CURRENT_IMPLEMENTATION_KEY] = newValue;
+        }
+      }
+    });
+  }
+  function tryHotSwappingValues(currentValue, newValue, seen = /* @__PURE__ */ new Set()) {
+    if (seen.has(currentValue)) {
+      return [IGNORE];
+    }
+    seen.add(currentValue);
+    if (typeof currentValue === "function" && FUNCTION_CURRENT_IMPLEMENTATION_KEY in currentValue) {
+      const result2 = [typeof newValue === "function" ? IGNORE : makeValueHotSwappable(newValue), [[currentValue, newValue]]];
+      return result2;
+    }
+    if (Array.isArray(currentValue)) {
+      const result2 = tryHotSwappingArrayValues(currentValue, newValue, seen);
+      return result2;
+    }
+    if (isBasicObject(currentValue) && !isRemoteFragment(currentValue)) {
+      const result2 = tryHotSwappingObjectValues(currentValue, newValue, seen);
+      return result2;
+    }
+    const result = [currentValue === newValue ? IGNORE : newValue];
+    return result;
+  }
+  function makeValueHotSwappable(value, seen = /* @__PURE__ */ new Map()) {
+    const seenValue = seen.get(value);
+    if (seenValue)
+      return seenValue;
+    if (isRemoteFragment(value)) {
+      seen.set(value, value);
+      return value;
+    }
+    if (Array.isArray(value)) {
+      const result = [];
+      seen.set(value, result);
+      for (const nested of value) {
+        result.push(makeValueHotSwappable(nested, seen));
+      }
+      return result;
+    }
+    if (isBasicObject(value)) {
+      const result = {};
+      seen.set(value, result);
+      for (const key of Object.keys(value)) {
+        result[key] = makeValueHotSwappable(value[key], seen);
+      }
+      return result;
+    }
+    if (typeof value === "function") {
+      const wrappedFunction = (...args) => {
+        return wrappedFunction[FUNCTION_CURRENT_IMPLEMENTATION_KEY](...args);
+      };
+      Object.defineProperty(wrappedFunction, FUNCTION_CURRENT_IMPLEMENTATION_KEY, {
+        enumerable: false,
+        configurable: false,
+        writable: true,
+        value
+      });
+      seen.set(value, wrappedFunction);
+      return wrappedFunction;
+    }
+    seen.set(value, value);
+    return value;
+  }
+  function collectNestedHotSwappableValues(value, seen = /* @__PURE__ */ new Set()) {
+    if (seen.has(value))
+      return void 0;
+    seen.add(value);
+    if (Array.isArray(value)) {
+      return value.reduce((all, element) => {
+        const nested = collectNestedHotSwappableValues(element, seen);
+        return nested ? [...all, ...nested] : all;
+      }, []);
+    }
+    if (isBasicObject(value)) {
+      return Object.keys(value).reduce((all, key) => {
+        const nested = collectNestedHotSwappableValues(value[key], seen);
+        return nested ? [...all, ...nested] : all;
+      }, []);
+    }
+    if (typeof value === "function") {
+      return FUNCTION_CURRENT_IMPLEMENTATION_KEY in value ? [value] : void 0;
+    }
+    return void 0;
+  }
+  function remove(child) {
+    var _child$parent;
+    (_child$parent = child.parent) === null || _child$parent === void 0 ? void 0 : _child$parent.removeChild(child);
+  }
+  function append(container, children, internals, rootInternals) {
+    for (const child of children) {
+      appendChild(container, child, internals, rootInternals);
+    }
+  }
+  function appendChild(container, child, internals, rootInternals) {
+    var _currentParent$childr;
+    const {
+      nodes,
+      strict
+    } = rootInternals;
+    if (!nodes.has(child)) {
+      throw new Error(`Cannot append a node that was not created by this remote root`);
+    }
+    const currentParent = child.parent;
+    const existingIndex = (_currentParent$childr = currentParent === null || currentParent === void 0 ? void 0 : currentParent.children.indexOf(child)) !== null && _currentParent$childr !== void 0 ? _currentParent$childr : -1;
+    return perform(container, rootInternals, {
+      remote: (channel) => {
+        channel(ACTION_INSERT_CHILD, container.id, existingIndex < 0 ? container.children.length : container.children.length - 1, serializeChild(child), currentParent ? currentParent.id : false);
+      },
+      local: () => {
+        moveNodeToContainer(container, child, rootInternals);
+        let newChildren;
+        if (currentParent) {
+          const currentInternals = getCurrentInternals(currentParent, rootInternals);
+          const currentChildren = [...currentInternals.children];
+          currentChildren.splice(existingIndex, 1);
+          if (currentParent === container) {
+            newChildren = currentChildren;
+          } else {
+            currentInternals.children = strict ? Object.freeze(currentChildren) : currentChildren;
+            newChildren = [...internals.children];
+          }
+        } else {
+          newChildren = [...internals.children];
+        }
+        newChildren.push(child);
+        internals.children = strict ? Object.freeze(newChildren) : newChildren;
+      }
+    });
+  }
+  function replaceChildren(container, children, internals, rootInternals) {
+    for (const child of container.children) {
+      removeChild(container, child, internals, rootInternals);
+    }
+    append(container, children, internals, rootInternals);
+  }
+  function removeChild(container, child, internals, rootInternals) {
+    const {
+      strict
+    } = rootInternals;
+    return perform(container, rootInternals, {
+      remote: (channel) => channel(ACTION_REMOVE_CHILD, container.id, container.children.indexOf(child)),
+      local: () => {
+        removeNodeFromContainer(child, rootInternals);
+        const newChildren = [...internals.children];
+        newChildren.splice(newChildren.indexOf(child), 1);
+        internals.children = strict ? Object.freeze(newChildren) : newChildren;
+      }
+    });
+  }
+  function insertBefore(container, child, before, internals, rootInternals) {
+    var _currentParent$childr2;
+    const {
+      strict,
+      nodes
+    } = rootInternals;
+    if (!nodes.has(child)) {
+      throw new Error(`Cannot insert a node that was not created by this remote root`);
+    }
+    const currentParent = child.parent;
+    const existingIndex = (_currentParent$childr2 = currentParent === null || currentParent === void 0 ? void 0 : currentParent.children.indexOf(child)) !== null && _currentParent$childr2 !== void 0 ? _currentParent$childr2 : -1;
+    return perform(container, rootInternals, {
+      remote: (channel) => {
+        const beforeIndex = before == null ? container.children.length - 1 : container.children.indexOf(before);
+        channel(ACTION_INSERT_CHILD, container.id, beforeIndex < existingIndex || existingIndex < 0 ? beforeIndex : beforeIndex - 1, serializeChild(child), currentParent ? currentParent.id : false);
+      },
+      local: () => {
+        moveNodeToContainer(container, child, rootInternals);
+        let newChildren;
+        if (currentParent) {
+          const currentInternals = getCurrentInternals(currentParent, rootInternals);
+          const currentChildren = [...currentInternals.children];
+          currentChildren.splice(existingIndex, 1);
+          if (currentParent === container) {
+            newChildren = currentChildren;
+          } else {
+            currentInternals.children = strict ? Object.freeze(currentChildren) : currentChildren;
+            newChildren = [...internals.children];
+          }
+        } else {
+          newChildren = [...internals.children];
+        }
+        if (before == null) {
+          newChildren.push(child);
+        } else {
+          newChildren.splice(newChildren.indexOf(before), 0, child);
+        }
+        internals.children = strict ? Object.freeze(newChildren) : newChildren;
+      }
+    });
+  }
+  function normalizeChild(child, root) {
+    return typeof child === "string" ? root.createText(child) : child;
+  }
+  function moveNodeToContainer(container, node, rootInternals) {
+    const {
+      tops,
+      parents
+    } = rootInternals;
+    const newTop = container.kind === KIND_ROOT ? container : tops.get(container);
+    tops.set(node, newTop);
+    parents.set(node, container);
+    moveFragmentToContainer(node, rootInternals);
+    allDescendants(node, (descendant) => {
+      tops.set(descendant, newTop);
+      moveFragmentToContainer(descendant, rootInternals);
+    });
+  }
+  function moveFragmentToContainer(node, rootInternals) {
+    if (node.kind !== KIND_COMPONENT)
+      return;
+    const props = node.props;
+    if (!props)
+      return;
+    Object.values(props).forEach((prop) => {
+      if (!isRemoteFragment(prop))
+        return;
+      moveNodeToContainer(node, prop, rootInternals);
+    });
+  }
+  function removeNodeFromContainer(node, rootInternals) {
+    const {
+      tops,
+      parents
+    } = rootInternals;
+    tops.delete(node);
+    parents.delete(node);
+    allDescendants(node, (descendant) => {
+      tops.delete(descendant);
+      removeFragmentFromContainer(descendant, rootInternals);
+    });
+    removeFragmentFromContainer(node, rootInternals);
+  }
+  function removeFragmentFromContainer(node, rootInternals) {
+    if (node.kind !== KIND_COMPONENT)
+      return;
+    const props = node.remoteProps;
+    for (const key of Object.keys(props !== null && props !== void 0 ? props : {})) {
+      const prop = props[key];
+      if (!isRemoteFragment(prop))
+        continue;
+      removeNodeFromContainer(prop, rootInternals);
+    }
+  }
+  function makePartOfTree(node, {
+    parents,
+    tops,
+    nodes
+  }) {
+    nodes.add(node);
+    Object.defineProperty(node, "parent", {
+      get() {
+        return parents.get(node);
+      },
+      configurable: true,
+      enumerable: true
+    });
+    Object.defineProperty(node, "top", {
+      get() {
+        return tops.get(node);
+      },
+      configurable: true,
+      enumerable: true
+    });
+  }
+  function serializeChild(value) {
+    return value.kind === KIND_TEXT ? {
+      id: value.id,
+      kind: value.kind,
+      text: value.text
+    } : {
+      id: value.id,
+      kind: value.kind,
+      type: value.type,
+      props: value.remoteProps,
+      children: value.children.map((child) => serializeChild(child))
+    };
+  }
+  function serializeProp(prop) {
+    if (isRemoteFragment(prop)) {
+      return serializeFragment(prop);
+    }
+    return prop;
+  }
+  function serializeFragment(value) {
+    return {
+      id: value.id,
+      kind: value.kind,
+      get children() {
+        return value.children.map((child) => serializeChild(child));
+      }
+    };
+  }
+  function getCurrentInternals(currentParent, rootInternals) {
+    if (currentParent.kind === KIND_ROOT) {
+      return rootInternals;
+    }
+    if (currentParent.kind === KIND_FRAGMENT) {
+      return rootInternals.fragments.get(currentParent);
+    }
+    return rootInternals.components.get(currentParent);
+  }
+  function makeRemote(value, id, root) {
+    Object.defineProperty(value, "id", {
+      value: id,
+      configurable: true,
+      writable: false,
+      enumerable: false
+    });
+    Object.defineProperty(value, "root", {
+      value: root,
+      configurable: true,
+      writable: false,
+      enumerable: false
+    });
+  }
+  function tryHotSwappingObjectValues(currentValue, newValue, seen) {
+    if (!isBasicObject(newValue)) {
+      var _collectNestedHotSwap;
+      return [makeValueHotSwappable(newValue), (_collectNestedHotSwap = collectNestedHotSwappableValues(currentValue)) === null || _collectNestedHotSwap === void 0 ? void 0 : _collectNestedHotSwap.map((hotSwappable) => [hotSwappable, void 0])];
+    }
+    let hasChanged = false;
+    const hotSwaps = [];
+    const normalizedNewValue = {};
+    for (const key in currentValue) {
+      const currentObjectValue = currentValue[key];
+      if (!(key in newValue)) {
+        hasChanged = true;
+        const nestedHotSwappables = collectNestedHotSwappableValues(currentObjectValue);
+        if (nestedHotSwappables) {
+          hotSwaps.push(...nestedHotSwappables.map((hotSwappable) => [hotSwappable, void 0]));
+        }
+      }
+      const newObjectValue = newValue[key];
+      const [updatedValue, elementHotSwaps] = tryHotSwappingValues(currentObjectValue, newObjectValue, seen);
+      if (elementHotSwaps) {
+        hotSwaps.push(...elementHotSwaps);
+      }
+      if (updatedValue !== IGNORE) {
+        hasChanged = true;
+        normalizedNewValue[key] = updatedValue;
+      }
+    }
+    for (const key in newValue) {
+      if (key in normalizedNewValue)
+        continue;
+      hasChanged = true;
+      normalizedNewValue[key] = makeValueHotSwappable(newValue[key]);
+    }
+    return [hasChanged ? normalizedNewValue : IGNORE, hotSwaps];
+  }
+  function tryHotSwappingArrayValues(currentValue, newValue, seen) {
+    if (!Array.isArray(newValue)) {
+      var _collectNestedHotSwap2;
+      return [makeValueHotSwappable(newValue), (_collectNestedHotSwap2 = collectNestedHotSwappableValues(currentValue)) === null || _collectNestedHotSwap2 === void 0 ? void 0 : _collectNestedHotSwap2.map((hotSwappable) => [hotSwappable, void 0])];
+    }
+    let hasChanged = false;
+    const hotSwaps = [];
+    const newLength = newValue.length;
+    const currentLength = currentValue.length;
+    const maxLength = Math.max(currentLength, newLength);
+    const normalizedNewValue = [];
+    for (let i = 0; i < maxLength; i++) {
+      const currentArrayValue = currentValue[i];
+      const newArrayValue = newValue[i];
+      if (i < newLength) {
+        if (i >= currentLength) {
+          hasChanged = true;
+          normalizedNewValue[i] = makeValueHotSwappable(newArrayValue);
+          continue;
+        }
+        const [updatedValue, elementHotSwaps] = tryHotSwappingValues(currentArrayValue, newArrayValue, seen);
+        if (elementHotSwaps)
+          hotSwaps.push(...elementHotSwaps);
+        if (updatedValue === IGNORE) {
+          normalizedNewValue[i] = currentArrayValue;
+          continue;
+        }
+        hasChanged = true;
+        normalizedNewValue[i] = updatedValue;
+      } else {
+        hasChanged = true;
+        const nestedHotSwappables = collectNestedHotSwappableValues(currentArrayValue);
+        if (nestedHotSwappables) {
+          hotSwaps.push(...nestedHotSwappables.map((hotSwappable) => [hotSwappable, void 0]));
+        }
+      }
+    }
+    return [hasChanged ? normalizedNewValue : IGNORE, hotSwaps];
+  }
+
+  // node_modules/@shopify/ui-extensions/build/esm/utilities/registration.mjs
+  function createExtensionRegistrationFunction() {
+    const extensionWrapper = (target, implementation) => {
+      var _shopify;
+      function extension2(...args) {
+        return __async(this, null, function* () {
+          if (args.length === 1) {
+            return implementation(...args);
+          }
+          const [{
+            channel,
+            components
+          }, api] = args;
+          const root = createRemoteRoot(channel, {
+            components,
+            strict: true
+          });
+          let renderResult = implementation(root, api);
+          if (typeof renderResult === "object" && renderResult != null && "then" in renderResult) {
+            renderResult = yield renderResult;
+          }
+          root.mount();
+          return renderResult;
+        });
+      }
+      (_shopify = globalThis.shopify) === null || _shopify === void 0 ? void 0 : _shopify.extend(target, extension2);
+      return extension2;
+    };
+    return extensionWrapper;
+  }
+
+  // node_modules/@shopify/ui-extensions/build/esm/surfaces/checkout/extension.mjs
+  var extension = createExtensionRegistrationFunction();
+
+  // node_modules/@shopify/ui-extensions/build/esm/surfaces/checkout/components/Banner/Banner.mjs
+  var Banner = createRemoteComponent("Banner");
+
+  // node_modules/@shopify/ui-extensions/build/esm/surfaces/checkout/components/Checkbox/Checkbox.mjs
+  var Checkbox = createRemoteComponent("Checkbox");
+
+  // node_modules/@shopify/ui-extensions/build/esm/surfaces/checkout/components/Select/Select.mjs
+  var Select = createRemoteComponent("Select");
+
+  // node_modules/@shopify/ui-extensions/build/esm/surfaces/checkout/components/TextField/TextField.mjs
+  var TextField = createRemoteComponent("TextField");
+
+  // extensions/checkout-ui/src/Checkout.js
+  var Checkout_default = extension("purchase.checkout.block.render", (root, api) => {
+    const { extension: extension2, i18n } = api;
+    const state = {
+      RFC: "",
+      Codigo_postal: "",
+      Nombre_Razon_Social: "",
+      Regimen_Fiscal: "1",
+      // Valor predeterminado
+      Tipo_Persona: "1"
+      // Valor predeterminado
+    };
+    const applyMetafieldChange = (key, value) => {
+      const currentMetafields = api.metafields.current;
+      const existingMetafield = currentMetafields.find((metafield) => metafield.key === key);
+      if (existingMetafield) {
+        api.metafields.update({
+          namespace: "philco",
+          key,
+          value,
+          type: "string"
+        });
+      } else {
+        api.metafields.create({
+          namespace: "philco",
+          key,
+          value,
+          type: "string"
+        });
+      }
+    };
+    let isCheckboxSelected = false;
+    const bannerComponent = root.createComponent(
+      Banner,
+      { title: "checkout-ui" },
+      i18n.translate("welcome", { target: extension2.target })
+    );
+    root.appendChild(bannerComponent);
+    const checkboxComponent = root.createComponent(
+      Checkbox,
+      {
+        id: "checkbox",
+        name: "checkbox",
+        onChange: () => {
+          isCheckboxSelected = !isCheckboxSelected;
+          if (isCheckboxSelected) {
+            root.appendChild(textFieldComponentNombreRazonSocial);
+            root.appendChild(textFieldComponentRFC);
+            root.appendChild(textFieldComponentCodigoPostal);
+            root.appendChild(selectComponentRegimenFiscal);
+            root.appendChild(selectComponentTipoPersona);
+          } else {
+            root.removeChild(textFieldComponentNombreRazonSocial);
+            root.removeChild(textFieldComponentRFC);
+            root.removeChild(textFieldComponentCodigoPostal);
+            root.removeChild(selectComponentRegimenFiscal);
+            root.removeChild(selectComponentTipoPersona);
+          }
+        }
+      },
+      "Deseas facturar?"
+    );
+    root.appendChild(checkboxComponent);
+    const textFieldComponentRFC = root.createComponent(
+      TextField,
+      {
+        id: "RFC",
+        label: "RFC",
+        onChange: (value) => {
+          state.RFC = value;
+          applyMetafieldChange("RFC", value);
+        }
+      }
+    );
+    const textFieldComponentCodigoPostal = root.createComponent(
+      TextField,
+      {
+        id: "Codigo_postal",
+        label: "Codigo postal",
+        onChange: (value) => {
+          state.Codigo_postal = value;
+          applyMetafieldChange("Codigo_postal", value);
+        }
+      }
+    );
+    const textFieldComponentNombreRazonSocial = root.createComponent(
+      TextField,
+      {
+        id: "Nombre_Razon_Social",
+        label: "Nombre o raz\xF3n social",
+        onChange: (value) => {
+          state.Nombre_Razon_Social = value;
+          applyMetafieldChange("Nombre_Razon_Social", value);
+        }
+      }
+    );
+    const selectComponentRegimenFiscal = root.createComponent(
+      Select,
+      {
+        label: "Regimen fiscal",
+        value: state.Regimen_Fiscal,
+        options: [
+          { value: "601", label: "601 General de Ley Personas Morales" },
+          { value: "603", label: "603 Personas Morales con Fines no Lucrativos" },
+          { value: "605", label: "605 Sueldos y Salarios e Ingresos Asimilados a Salarios" },
+          { value: "606", label: "606 Arrendamiento" },
+          { value: "607", label: "607 R\xE9gimen de Enajenaci\xF3n o Adquisici\xF3n de Bienes" },
+          { value: "608", label: "608 Dem\xE1s ingresos" }
+        ],
+        onChange: (value) => {
+          state.Regimen_Fiscal = value;
+          applyMetafieldChange("Regimen_Fiscal", value);
+        }
+      }
+    );
+    const selectComponentTipoPersona = root.createComponent(
+      Select,
+      {
+        label: "Tipo de Persona",
+        value: state.Tipo_Persona,
+        options: [
+          { value: "fisica", label: "Soy persona fisica" },
+          { value: "moral", label: "Soy persona moral" }
+        ],
+        onChange: (value) => {
+          state.Tipo_Persona = value;
+          applyMetafieldChange("Tipo_Persona", value);
+        }
+      }
+    );
+    if (isCheckboxSelected) {
+      root.appendChild(textFieldComponentNombreRazonSocial);
+      root.appendChild(textFieldComponentRFC);
+      root.appendChild(textFieldComponentCodigoPostal);
+      root.appendChild(selectComponentRegimenFiscal);
+      root.appendChild(selectComponentTipoPersona);
+    }
+  });
+})();
+//# sourceMappingURL=checkout-ui.js.map
